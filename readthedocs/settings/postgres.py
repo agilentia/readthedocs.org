@@ -12,8 +12,8 @@ DATABASES = {
     }
 }
 
-DEBUG = False
-TEMPLATE_DEBUG = False
+DEBUG = True
+TEMPLATE_DEBUG = True
 CELERY_ALWAYS_EAGER = False
 
 MEDIA_URL = 'https://media.readthedocs.org/'

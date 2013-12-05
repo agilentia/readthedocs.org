@@ -12,8 +12,7 @@ PRODUCTION_DOMAIN = 'readthedocs.org'
 USE_SUBDOMAIN = False
 
 ADMINS = (
-    ('Charlie Leifer', 'coleifer@gmail.com'),
-    ('Eric Holscher', 'eric@ericholscher.com'),
+    ('Tschirka Schaefer', 'jirka.schaefer@sherpany.com'),
 )
 
 MANAGERS = ADMINS
@@ -202,7 +201,7 @@ ANONYMOUS_USER_ID = -1
 
 # RTD Settings
 REPO_LOCK_SECONDS = 30
-ALLOW_PRIVATE_REPOS = False
+ALLOW_PRIVATE_REPOS = True
 
 LOG_FORMAT = "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s"
 
@@ -327,3 +326,6 @@ LOGGING = {
 
 if DEBUG:
     LOGGING['handlers']['console']['level'] = 'DEBUG'
+
+GITHUB_USERNAME = 'patroqueeet'
+GITHUB_TOKEN = '04ee27c967ff7cf04545208d315a9575024d131c'

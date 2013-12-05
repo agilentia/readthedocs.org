@@ -78,7 +78,7 @@ def update_docs(pk, record=True, pdf=True, man=True, epub=True, dash=True,
     if api is None:
         api = tastyapi.api
 
-    project_data = api.project(pk).get()
+    project_data = api.project(pk).get(format='json')
     project = make_api_project(project_data)
     #if 'edx-platform' in  project.repo:
         # Skip edx for now
