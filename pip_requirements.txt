@@ -25,7 +25,7 @@ simplejson==2.3.0
 south==0.7.6
 sphinx-http-domain==0.2
 django-gravatar2==1.0.6
-slumber==0.6
+slumber==0.5.3
 requests==2.0
 virtualenv==1.10.1
 doc2dash==1.1.0
