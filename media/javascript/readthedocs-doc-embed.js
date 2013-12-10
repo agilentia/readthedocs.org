@@ -81,7 +81,7 @@ $(document).ready(function () {
     $(document).on('submit', '#rtd-search-form', function (ev) {
       //ev.preventDefault();
       clearSearch()
-      var query = $("#rtd-search-form input[name='q'").val()
+      var query = $("#rtd-search-form input[name='q']").val()
       getSearch(query, true)
     }) 
 
@@ -107,7 +107,7 @@ $(document).ready(function () {
       if (query.length) {
         query = query.join(" ")
         console.log("Searching based on GET arg for: " + query)
-        $("#rtd-search-form input[name='q'").val(query)
+        $("#rtd-search-form input[name='q']").val(query)
         getSearch(query, clear)
       }
     }

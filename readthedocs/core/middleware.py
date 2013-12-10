@@ -35,9 +35,11 @@ class SubdomainMiddleware(object):
                 return None
             # Serve rtfd.org
             elif not is_www and not is_ssl and 'rtfd.org' in host:
+                # Disable RTFD django.me close stuff for now.
+                # AFAICT nobody uses it, and it causes 500s in templates :)
                 request.slug = subdomain
                 request.urlconf = 'core.djangome_urls'
-                log.debug(LOG_TEMPLATE.format(msg='Django.me request let through', **log_kwargs))
+                log.debug(LOG_TEMPLATE.format(msg='Django.me request', **log_kwargs))
                 return None
         # Serve CNAMEs
         if settings.PRODUCTION_DOMAIN not in host and \
@@ -62,6 +64,7 @@ class SubdomainMiddleware(object):
                         cache.set(host, slug, 60*60)
                         #Cache the slug -> host mapping permanently.
                         redis_conn.sadd("rtd_slug:v1:%s" % slug, host)
+                        log.debug(LOG_TEMPLATE.format(msg='CNAME cached: %s->%s' % (slug, host), **log_kwargs))
                     request.slug = slug
                     request.urlconf = 'core.subdomain_urls'
                     log.debug(LOG_TEMPLATE.format(msg='CNAME detetected: %s' % request.slug, **log_kwargs))
