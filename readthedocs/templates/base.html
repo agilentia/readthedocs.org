@@ -15,6 +15,8 @@
   <!-- css -->
   <link rel="stylesheet" href="{{ MEDIA_URL }}css/core.css">
   {% block extra_links %}{% endblock %}
+  
+  <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <!-- jquery -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -39,7 +41,12 @@
 
   <script type="text/javascript" src="//use.typekit.net/haq4xtp.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-
+  
+  {# FORCE CSS FONT #}
+  <style>
+    html, body { font-family: 'Droid Sans', Verdana, Arial, sans-serif; }
+  </style>
+  
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
