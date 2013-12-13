@@ -63,10 +63,12 @@
                   <ul>
                     {% for project in project_list %}
                       <li class="module-item col-span">
-                        <a href="{% url projects_manage project.slug %}">{{ project.name }}</a>
+                        {{ project.name }}
                         <ul class="module-item-menu">
-                          <li><a href="{% url projects_edit project.slug %}"><i class="gear"></i>{% trans "Admin" %}</a></li>
-                          <li>&nbsp;&nbsp;</li>
+                          {% if request.user.is_authenticated and request.user.is_superuser %}
+                            <li><a href="{% url projects_edit project.slug %}"><i class="gear"></i>{% trans "Admin" %}</a></li>
+                            <li>&nbsp;&nbsp;</li>
+                          {% endif %}
                           <li><a href="{{ project.get_docs_url }}">{% trans "View Docs" %}</a></li>
                         </ul>
                       </li>
