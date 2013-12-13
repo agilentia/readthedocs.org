@@ -24,7 +24,7 @@ class VersionManager(models.Manager):
         if user and user.is_authenticated():
             # Add in possible user-specific views
             user_queryset = get_objects_for_user(user, 'builds.view_version')
-            queryset = user_queryset or queryset
+            queryset = user_queryset | queryset
         elif user:
             # Hack around get_objects_for_user not supporting global perms
             global_access = user.has_perm('builds.view_version')

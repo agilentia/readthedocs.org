@@ -41,7 +41,7 @@ class ProjectManager(models.Manager):
         if user.is_authenticated():
             # Add in possible user-specific views
             user_queryset = get_objects_for_user(user, 'projects.view_project')
-            queryset = user_queryset or queryset
+            queryset = user_queryset | queryset
         return queryset.filter(skip=False)
 
     def live(self, *args, **kwargs):
