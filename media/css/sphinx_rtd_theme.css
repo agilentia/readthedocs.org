@@ -2144,6 +2144,7 @@ a {
 }
 a:hover {
     color: #58cb8e;
+    text-decoration: underline;
 }
 .link-danger {
     color: #e74c3c;
