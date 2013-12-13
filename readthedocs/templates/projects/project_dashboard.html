@@ -82,7 +82,12 @@
           {% else %}
               {% url projects_import as projects_import_url %}
               <p class="empty">
-                {% blocktrans with "https://read-the-docs.readthedocs.org/en/latest/getting_started.html" as getting_started_url %}You don't have any projects.{% endblocktrans %}
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                    {% blocktrans with "https://read-the-docs.readthedocs.org/en/latest/getting_started.html" as getting_started_url %}You don't have any projects.<br>
+                    Check out the <a href="{{ getting_started_url }}">Getting Started</a> documentation for information about how to get going.{% endblocktrans %}
+                {% else %}
+                    {% blocktrans with "https://read-the-docs.readthedocs.org/en/latest/getting_started.html" as getting_started_url %}You don't have any projects.{% endblocktrans %}
+                {% endif %}
               </p>
           {% endif %}
           <!-- END your projects list -->
