@@ -63,7 +63,7 @@
                   <ul>
                     {% for project in project_list %}
                       <li class="module-item col-span">
-                        {{ project.name }}
+                        <a href="{{ project.get_docs_url }}">{{ project.name }}</a>
                         <ul class="module-item-menu">
                           {% if request.user.is_authenticated and request.user.is_superuser %}
                             <li><a href="{% url projects_edit project.slug %}"><i class="gear"></i>{% trans "Admin" %}</a></li>
