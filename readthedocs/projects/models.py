@@ -3,7 +3,7 @@ import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
@@ -37,11 +37,12 @@ class ProjectManager(models.Manager):
             # Hack around get_objects_for_user not supporting global perms
             global_access = user.has_perm('projects.view_project')
             if global_access:
-                queryset = Project.objects.all()
-        if user.is_authenticated():
+		user_groups = user.groups.all()
+                queryset = Project.objects.filter(groups__in=user_groups)
+        #if user.is_authenticated():
             # Add in possible user-specific views
-            user_queryset = get_objects_for_user(user, 'projects.view_project')
-            queryset = user_queryset | queryset
+            # user_queryset = get_objects_for_user(user, 'projects.view_project')
+            # queryset = user_queryset | queryset
         return queryset.filter(skip=False)
 
     def live(self, *args, **kwargs):
@@ -95,6 +96,8 @@ class Project(models.Model):
     #Generally from conf.py
     users = models.ManyToManyField(User, verbose_name=_('User'),
                                    related_name='projects')
+    groups = models.ManyToManyField(Group, verbose_name=_('Groups'),
+                                   related_name='projects_groups')
     name = models.CharField(_('Name'), max_length=255)
     slug = models.SlugField(_('Slug'), max_length=255, unique=True)
     description = models.TextField(_('Description'), blank=True,
