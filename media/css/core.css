@@ -17,7 +17,7 @@ hr { height: 1px; border: 0; border: none; width: 100%; background: #bfbfbf; col
 
 /* general layout */
 
-body { position: relative; text-align: center; z-index: 0; background: #fafafa url(../images/body-bg.png) top left repeat; }
+body { position: relative; text-align: center; z-index: 0; background: #fafafa; }
 .wrapper { position: relative; text-align: left; margin: 0 auto; padding: 0 10px; width: 800px; }
 
 
@@ -33,7 +33,7 @@ h4, h5, h6 { font-size: 16px; line-height: 20px; margin-bottom: 10px; }
 .error, .errornote, .errorlist li { color: #EB3800; }
 .errornote { margin-bottom: 15px; }
 .edit,
-a { color: #444; }
+a { color: #58cb8e; }
 .edit,
 a:hover { color: #111; }
 table { margin-bottom: 15px; }
@@ -58,10 +58,15 @@ form p label { font-weight: normal; }
 form p.required label { font-weight: bold; }
 textarea, input, button, .button, select { display: block; padding: 5px; color: #444; background-color: #fff; border: 1px solid #BFBFBF; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 textarea, input, .button { box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; }
-input[type="text"], input[type="password"] { width: 250px; height: 20px; margin-bottom: 5px; background: #fff; }
-select { display: block; max-height: 300px; width: 250px; margin-bottom: 10px; font: 16/20px "inconsolata", "inconsolata-1", "inconsolata-2", 'bitstream vera sans mono', 'andale mono', 'lucida console', monospace; }
+input[type="text"], input[type="password"] {
+  width: 250px; height: 20px; margin-bottom: 5px; background: #fff;
+}
+select {
+  display: block; max-height: 300px; width: 250px; margin-bottom: 10px; font: 16/20px "inconsolata", "inconsolata-1", "inconsolata-2", 'bitstream vera sans mono', 'andale mono', 'lucida console', monospace;
+}
 textarea { background: #fff; width: 435px; height: 150px; }
-input[type="submit"], input[type="button"], button, .button { font-family: "ff-meta-web-pro", "ff-meta-web-pro-1", "ff-meta-web-pro-2", Arial, "Helvetica Neue", sans-serif; color: #666; font-weight: bold; padding: 8px 15px; border: none; background: #e6e6e6 url(../images/gradient.png) repeat-x bottom left; margin: 30px 5px 20px 0; text-shadow: 0 1px 0 rgba(255, 255, 255, 1); border: 1px solid #bfbfbf; display: block; text-decoration: none; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; cursor: pointer;}
+input[type="submit"], input[type="button"], button, .button { 
+font-family: "ff-meta-web-pro", "ff-meta-web-pro-1", "ff-meta-web-pro-2", Arial, "Helvetica Neue", sans-serif; color: #666; font-weight: bold; padding: 8px 15px; border: none; background: #e6e6e6 url(../images/gradient.png) repeat-x bottom left; margin: 30px 5px 20px 0; text-shadow: 0 1px 0 rgba(255, 255, 255, 1); border: 1px solid #bfbfbf; display: block; text-decoration: none; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset; cursor: pointer;}
 .button { padding: 6px 10px; float: left; cursor: pointer; }
 input[type="submit"]:hover, input[type="button"]:hover, button:hover, .button:hover { background-color: #8ECC4C; color: #fff; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); border-color: #6B9939; border-bottom-color: #50732B; }
 input[type="submit"]:active, input[type="button"]:active, button:active, .buttonn:active { box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; }
@@ -86,11 +91,11 @@ i { display: inline-block; padding:0; margin:0; padding-right:6px; position: rel
 
 /* header */
 
-#rtfd-header { height: 70px; background: #58cb8e; overflow: hidden; text-align: left; position:relative; }
+#rtfd-header { height: 50px; background: #58cb8e; overflow: hidden; text-align: left; position:relative; }
 
   /* header title */
-  .rtfd-header-title { position: relative; margin: 0; padding: 0; height: 70px; width: 180px; }
-  .rtfd-header-title h1 { background: url(../images/logo.png) top left no-repeat; position: absolute; top: 0; left: -30px; margin: 0; padding: 0; font-size: 20px; line-height: 20px; color: #fff; }
+  .rtfd-header-title { position: relative; margin: 0; padding: 0; height: 50px; width: 180px; padding: 10px 0 10px 0; }
+  .rtfd-header-title h1 { position: absolute; top: 0; left: -30px; margin: 0; padding: 0; font-size: 20px; line-height: 20px; color: #fff; }
   .rtfd-header-title h1 a { display: block; color: #fff; text-decoration: none; height: 50px; width: 200px; }
 
   /* header search */
