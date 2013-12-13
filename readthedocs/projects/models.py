@@ -63,10 +63,10 @@ class ProjectManager(models.Manager):
             user_groups = user.groups.all()
             queryset = Project.objects.filter(
                 groups__in=user_groups,
-                privacy_level__in=[constants.PUBLIC, constants.PROTECTED])
+                privacy_level__in=(constants.PUBLIC, constants.PROTECTED))
         else:
             queryset = self._filter_queryset(user,
-                privacy_level__in=[constants.PUBLIC, constants.PROTECTED])
+                privacy_level=(constants.PUBLIC, constants.PROTECTED))
         return queryset.filter(*args, **kwargs)
 
     def private(self, user=None, *args, **kwargs):
