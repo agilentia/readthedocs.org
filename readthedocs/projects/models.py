@@ -53,39 +53,22 @@ class ProjectManager(models.Manager):
         Query for projects, privacy_level == public, and skip = False
         """
         queryset = self._filter_queryset(user, privacy_level=constants.PUBLIC)
-        if user and user.is_authenticated():
-            pks = queryset.values_list('pk', flat=True)  # FIXME!!!
-            user_groups = user.groups.all()
-            queryset = Project.objects.filter(
-                models.Q(pk__in=pks) | models.Q(groups__in=user_groups))
         return queryset.filter(*args, **kwargs)
 
     def protected(self, user=None, *args, **kwargs):
         """
         Query for projects, privacy_level != private, and skip = False
         """
-        if user.is_authenticated():
-            user_groups = user.groups.all()
-            # return all public projects and project from user's group
-            queryset = Project.objects.filter(
-                models.Q(groups__in=user_groups,
-                         privacy_level=constants.PROTECTED) |
-                models.Q(privacy_level=constants.PUBLIC))
-        else:
-            queryset = self._filter_queryset(user,
-                privacy_level=(constants.PUBLIC, constants.PROTECTED))
+        queryset = self._filter_queryset(user,
+                                         privacy_level=(constants.PUBLIC,
+                                                        constants.PROTECTED))
         return queryset.filter(*args, **kwargs)
 
     def private(self, user=None, *args, **kwargs):
         """
         Query for projects, privacy_level != private, and skip = False
         """
-        if user.is_authenticated():
-            user_groups = user.groups.all()
-            queryset = Project.objects.filter(groups__in=user_groups,
-                privacy_level=constants.PRIVATE)
-        else:
-            queryset = self._filter_queryset(user, privacy_level=constants.PRIVATE)
+        queryset = self._filter_queryset(user, privacy_level=constants.PRIVATE)
         return queryset.filter(*args, **kwargs)
 
 
