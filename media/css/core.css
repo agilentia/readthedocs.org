@@ -311,7 +311,7 @@ p.build-missing { font-size: .8em; color: #9d9a55; margin: 0 0 3px; }
 
 /* footer */
 
-#footer { margin: 100px 0; color: #aaa; }
+#footer { margin: 100px 0; color: #aaa; font-size:0.8em; }
 #footer a { color: #aaa; }
 #footer a:hover { color: #666; }
 
