@@ -37,12 +37,11 @@ class ProjectManager(models.Manager):
             # Hack around get_objects_for_user not supporting global perms
             global_access = user.has_perm('projects.view_project')
             if global_access:
-		user_groups = user.groups.all()
-                queryset = Project.objects.filter(groups__in=user_groups)
-        #if user.is_authenticated():
+                queryset = Project.objects.all()
+        if user.is_authenticated():
             # Add in possible user-specific views
-            # user_queryset = get_objects_for_user(user, 'projects.view_project')
-            # queryset = user_queryset | queryset
+            user_queryset = get_objects_for_user(user, 'projects.view_project')
+            queryset = user_queryset | queryset
         return queryset.filter(skip=False)
 
     def live(self, *args, **kwargs):
@@ -60,8 +59,13 @@ class ProjectManager(models.Manager):
         """
         Query for projects, privacy_level != private, and skip = False
         """
-        queryset = self._filter_queryset(user,
-                                         privacy_level=(constants.PUBLIC,
+        if user.is_authenticated():
+           user_groups = user.groups.all()
+           queryset = Project.objects.filter(groups__in=user_groups, privacy_level=(constants.PUBLIC,
+										    constants.PROTECTED))
+	else:
+           queryset = self._filter_queryset(user,
+                                            privacy_level=(constants.PUBLIC,
                                                         constants.PROTECTED))
         return queryset.filter(*args, **kwargs)
 
@@ -69,7 +73,11 @@ class ProjectManager(models.Manager):
         """
         Query for projects, privacy_level != private, and skip = False
         """
-        queryset = self._filter_queryset(user, privacy_level=constants.PRIVATE)
+        if user.is_authenticated():
+	   user_groups = user.groups.all()
+           queryset = Project.objects.filter(groups__in=user_groups, privacy_level=constants.PRIVATE)
+	else:
+	   queryset = self._filter_queryset(user, privacy_level=constants.PRIVATE)
         return queryset.filter(*args, **kwargs)
 
 

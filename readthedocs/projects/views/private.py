@@ -30,9 +30,8 @@ def project_dashboard(request):
     A dashboard!  If you aint know what that means you aint need to.
     Essentially we show you an overview of your content.
     """
-    user_groups = request.user.groups.all()
     qs = (Version.objects.active(user=request.user)
-          .filter(project__groups__in=user_groups))
+          .filter(project__users__in=[request.user]))
     filter = VersionFilter(constants.IMPORTANT_VERSION_FILTERS, queryset=qs)
     return object_list(
         request,
