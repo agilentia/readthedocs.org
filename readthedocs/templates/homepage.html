@@ -59,9 +59,11 @@ There's also support for versioning so you can build docs from tags and branches
             </div>
           </div>-->
         {% endif %}
-
-          {% include "core/widesearchbar.html" %}
-
+          
+          {% comment %}
+            {% include "core/widesearchbar.html" %}
+          {% endcomment %}
+          
           {% if featured_list %}
           <!-- BEGIN projects list -->
           <div class="module">
