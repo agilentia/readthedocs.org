@@ -60,13 +60,13 @@ class ProjectManager(models.Manager):
         Query for projects, privacy_level != private, and skip = False
         """
         if user.is_authenticated():
-           user_groups = user.groups.all()
-           queryset = Project.objects.filter(groups__in=user_groups, privacy_level=(constants.PUBLIC,
-										    constants.PROTECTED))
-	else:
-           queryset = self._filter_queryset(user,
-                                            privacy_level=(constants.PUBLIC,
-                                                        constants.PROTECTED))
+            user_groups = user.groups.all()
+            queryset = Project.objects.filter(
+                groups__in=user_groups,
+                privacy_level__in=(constants.PUBLIC, constants.PROTECTED))
+        else:
+            queryset = self._filter_queryset(user,
+                privacy_level__in=(constants.PUBLIC, constants.PROTECTED))
         return queryset.filter(*args, **kwargs)
 
     def private(self, user=None, *args, **kwargs):
@@ -74,10 +74,11 @@ class ProjectManager(models.Manager):
         Query for projects, privacy_level != private, and skip = False
         """
         if user.is_authenticated():
-	   user_groups = user.groups.all()
-           queryset = Project.objects.filter(groups__in=user_groups, privacy_level=constants.PRIVATE)
-	else:
-	   queryset = self._filter_queryset(user, privacy_level=constants.PRIVATE)
+            user_groups = user.groups.all()
+            queryset = Project.objects.filter(groups__in=user_groups,
+                privacy_level=constants.PRIVATE)
+        else:
+            queryset = self._filter_queryset(user, privacy_level=constants.PRIVATE)
         return queryset.filter(*args, **kwargs)
 
 
@@ -219,9 +220,9 @@ class Project(models.Model):
                                               related_name='translations',
                                               blank=True, null=True)
 
-    # Version State 
+    # Version State
     num_major = models.IntegerField(
-        _('Number of Major versions'), 
+        _('Number of Major versions'),
         max_length=3,
         default=None,
         null=True,
@@ -229,7 +230,7 @@ class Project(models.Model):
         help_text=_("2 means supporting 3.X.X and 2.X.X, but not 1.X.X")
     )
     num_minor = models.IntegerField(
-        _('Number of Minor versions'), 
+        _('Number of Minor versions'),
         max_length=3,
         default=None,
         null=True,
@@ -237,7 +238,7 @@ class Project(models.Model):
         help_text=_("2 means supporting 2.2.X and 2.1.X, but not 2.0.X")
     )
     num_point = models.IntegerField(
-        _('Number of Point versions'), 
+        _('Number of Point versions'),
         max_length=3,
         default=None,
         null=True,
@@ -419,7 +420,7 @@ class Project(models.Model):
 
     #
     # Paths for symlinks in project doc_path.
-    # 
+    #
     def cnames_symlink_path(self, domain):
         """
         Path in the doc_path that we symlink cnames
