@@ -17,19 +17,25 @@
           </ul>
         {% endif %}
 
-          <ul>
+          
             {% if request.user.get_profile %}
-              <li class="first {{ view_profile_active }}">
-                <a href="{{ request.user.get_profile.get_absolute_url }}">{% trans "Profile" %}</a>
-              </li>
+                <ul>
+                  <li class="first {{ view_profile_active }}">
+                    <a href="{{ request.user.get_profile.get_absolute_url }}">{% trans "Profile" %}</a>
+                  </li>
+                </ul>
             {% else %}
-              <li>
-                <a href="{{ profiles_profile_create }}">{% trans "Create Profile" %}</a>
-              </li>
+                <ul>
+                  <li>
+                    <a href="{{ profiles_profile_create }}">{% trans "Create Profile" %}</a>
+                  </li>
+                </ul>
             {% endif %}
-            <li class="last {{ change_password_active }}">
-              <a href="/accounts/password/change/">{% trans "Change Password" %}</a>
-            </li>
+            <ul>
+                <li class="last {{ change_password_active }}">
+                  <a href="/accounts/password/change/">{% trans "Change Password" %}</a>
+                </li>
+            </ul>
           </ul>
 
       </div>
