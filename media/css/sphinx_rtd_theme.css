@@ -3249,27 +3249,11 @@ img {
   src: url("http://sherpany.com/tl_files/page/ci/font/proximanova-semibold-webfont.woff");
 }
 
-.ProximaNovaA-Light { 
-  font-family: ProximaNovaA-Light;
-  font-weight: normal;
-  font-style: normal;
-}
-.ProximaNovaS-Light { 
-  font-family: ProximaNovaS-Light;
-  font-weight: normal;
-  font-style: normal;
-}
-.ProximaNova-Light { 
-  font-family: ProximaNova-Light;
-  font-weight: normal;
-  font-style: normal;
-}
-
 h1,h2,h3,h4,h5,h6{
   font-weight: 100;
-  font-family: ProximaNova-Light;
+  font-family: Proximanova_Bold;
   text-transform: uppercase;
   color: #505255;
-  letter-spacing: 2px;
+  letter-spacing: -1px;
   margin-top: 0px;
 }
