@@ -61,9 +61,11 @@ class ProjectManager(models.Manager):
         """
         if user.is_authenticated():
             user_groups = user.groups.all()
+            # return all public projects and project from user's group
             queryset = Project.objects.filter(
-                groups__in=user_groups,
-                privacy_level__in=(constants.PUBLIC, constants.PROTECTED))
+                models.Q(groups__in=user_groups,
+                         privacy_level=constants.PROTECTED) |
+                models.Q(privacy_level=constants.PUBLIC))
         else:
             queryset = self._filter_queryset(user,
                 privacy_level=(constants.PUBLIC, constants.PROTECTED))
