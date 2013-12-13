@@ -53,6 +53,11 @@ class ProjectManager(models.Manager):
         Query for projects, privacy_level == public, and skip = False
         """
         queryset = self._filter_queryset(user, privacy_level=constants.PUBLIC)
+        if user and user.is_authenticated():
+            pks = queryset.values_list('pk', flat=True)  # FIXME!!!
+            user_groups = user.groups.all()
+            queryset = Project.objects.filter(
+                models.Q(pk__in=pks) | models.Q(groups__in=user_groups))
         return queryset.filter(*args, **kwargs)
 
     def protected(self, user=None, *args, **kwargs):
@@ -108,7 +113,7 @@ class Project(models.Model):
     users = models.ManyToManyField(User, verbose_name=_('User'),
                                    related_name='projects')
     groups = models.ManyToManyField(Group, verbose_name=_('Groups'),
-                                   related_name='projects_groups')
+                                   related_name='projects_groups', blank=True)
     name = models.CharField(_('Name'), max_length=255)
     slug = models.SlugField(_('Slug'), max_length=255, unique=True)
     description = models.TextField(_('Description'), blank=True,
