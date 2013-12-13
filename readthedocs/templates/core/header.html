@@ -32,9 +32,11 @@
         <div class="rtfd-header-nav">
           <ul>
             {% if request.user.is_authenticated %}
-              {% comment %}
-              <li class="{{ dashboard_active }}"><a href="{% url projects_dashboard %}">{% trans "Dashboard" %}</a></li> 
-              {% endcomment %}
+
+              {% if request.user.is_superuser %}
+                <li class="{{ dashboard_active }}"><a href="{% url projects_dashboard %}">{% trans "Dashboard" %}</a></li>
+              {% endif %}
+
               <li><a href="{% url auth_logout %}">{% trans "Log Out" %}</a></li>
             {% else %}
               <li><a href="{% url auth_login %}">{% trans "Log in" %}</a></li>

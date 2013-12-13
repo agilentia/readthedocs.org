@@ -10,7 +10,7 @@
             <li class="{% block dash-nav-bookmarks %}{% endblock %}"><a href="{% url user_bookmarks %}">{% trans "Bookmarks" %}</a></li>
             {% endcomment %}
           </ul>
-        
+
         {% if request.user and request.user.is_superuser %}
           <ul>
             <li class="first last {{ import_active }}"><a href="{% url projects_import %}">{% trans "Import" %}</a></li>
