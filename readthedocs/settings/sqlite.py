@@ -27,7 +27,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 SLUMBER_USERNAME = 'test'
 SLUMBER_PASSWORD = 'test'
-SLUMBER_API_HOST = 'http://docs.sherpany.com/'
+SLUMBER_API_HOST = 'http://docs.sherpany.com'
 
 WEBSOCKET_HOST = 'localhost:8088'
 
