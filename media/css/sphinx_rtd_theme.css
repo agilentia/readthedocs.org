@@ -3251,9 +3251,9 @@ img {
 
 h1,h2,h3,h4,h5,h6{
   font-weight: 100;
-  font-family: Proximanova_Bold;
+  font-family: Proximanova_Semibold;
   text-transform: uppercase;
   color: #505255;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
   margin-top: 0px;
 }
