@@ -24,7 +24,7 @@ class VersionManager(models.Manager):
         if user and user.is_authenticated():
             # Add in possible user-specific views
             user_queryset = get_objects_for_user(user, 'builds.view_version')
-            queryset = user_queryset | queryset
+            queryset = user_queryset or queryset
         elif user:
             # Hack around get_objects_for_user not supporting global perms
             global_access = user.has_perm('builds.view_version')
@@ -91,7 +91,7 @@ class Version(models.Model):
     active = models.BooleanField(_('Active'), default=False)
     built = models.BooleanField(_('Built'), default=False)
     uploaded = models.BooleanField(_('Uploaded'), default=False)
-    
+
     privacy_level = models.CharField(
         _('Privacy Level'), max_length=20, choices=constants.PRIVACY_CHOICES,
         default='public', help_text=_("Level of privacy for this Version."))
@@ -120,7 +120,7 @@ class Version(models.Model):
             return ''
         return self.project.get_docs_url(version_slug=self.slug)
 
-    @property 
+    @property
     def remote_slug(self):
         if self.slug == 'latest':
             if self.project.default_branch:
