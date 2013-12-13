@@ -488,7 +488,7 @@ ol {
 }
 
 
-a {
+a, input[type="submit"], input[type="button"], button, .button {
   border-radius: 15px !important;
   -moz-border-radius: 15px !important;
   -webkit-border-radius: 15px !important;
