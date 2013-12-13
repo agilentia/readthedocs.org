@@ -27,7 +27,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 SLUMBER_USERNAME = 'test'
 SLUMBER_PASSWORD = 'test'
-SLUMBER_API_HOST = 'http://localhost:8000'
+SLUMBER_API_HOST = 'http://docs.sherpany.com/'
 
 WEBSOCKET_HOST = 'localhost:8088'
 
@@ -45,7 +45,7 @@ CELERY_ALWAYS_EAGER = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # For testing locally. Put this in your /etc/hosts:
-# 127.0.0.1 test 
+# 127.0.0.1 test
 # and navigate to http://test:8000
 CORS_ORIGIN_WHITELIST = (
     'test:8000',
