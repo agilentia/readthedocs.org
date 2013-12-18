@@ -33,7 +33,7 @@ if 'html_static_path' in globals():
 else:
     html_static_path = ['_static', '{{ static_path }}']
 
-# Add RTD Theme Path. 
+# Add RTD Theme Path.
 if 'html_theme_path' in globals():
     html_theme_path.append('{{ template_path }}')
 else:
@@ -74,7 +74,7 @@ context = {
     'MEDIA_URL': "{{ settings.MEDIA_URL }}",
     'PRODUCTION_DOMAIN': "{{ settings.PRODUCTION_DOMAIN }}",
     'versions': [{% for version in versions|sort_version_aware %}
-    ("{{ version.slug }}", "/en/{{ version.slug }}/"),{% endfor %}
+    ("{{ version.slug }}", "/docs/{{ project.slug }}/en/{{ version.slug }}/"),{% endfor %}
     ],
     'downloads': [ {% for key, val in downloads.items %}
     ("{{ key }}", "{{ val }}"),{% endfor %}

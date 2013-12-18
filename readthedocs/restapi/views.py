@@ -287,7 +287,8 @@ def index_search(request):
     version_pk = data['version_pk']
     project = Project.objects.get(pk=project_pk)
     version = Version.objects.get(pk=version_pk)
-    resp = requests.get('https://api.grokthedocs.com/api/v1/index/1/heatmap/', params={'project': project.slug, 'compare': True})
+    resp = requests.get('https://api.grokthedocs.com/api/v1/index/1/heatmap/',
+        params={'project': project.slug, 'compare': True}, timeout=5)
     ret_json = resp.json()
     project_scale = ret_json['scaled_project'][project.slug]
 
@@ -467,7 +468,7 @@ def section_search(request):
                 "terms": {"field": "project"},
                 "facet_filter": {
                     "term": {"version": version_slug},
-                } 
+                }
             },
         },
         "highlight": {
@@ -491,7 +492,7 @@ def section_search(request):
             "terms": {"field": "path"},
             "facet_filter": {
                 "term": {"project": project_slug},
-            } 
+            }
         },
         # Add routing to optimize search by hitting the right shard.
         kwargs['routing'] = project_slug
@@ -502,7 +503,7 @@ def section_search(request):
                 {"term": {"path": path_slug}},
             ]
         }
-        
+
     if path_slug and not project_slug:
         # Show facets when we only have a path
         body["facets"]['path'] = {
