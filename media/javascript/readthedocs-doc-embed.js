@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     // Theme popout code
     $.ajax({
-      url: "https://readthedocs.org/api/v2/footer_html/",
+      url: "http://docs.sherpany.com/api/v2/footer_html/",
       //url: "http://localhost:8000/api/v2/footer_html/",
       crossDomain: true,
       xhrFields: {
@@ -122,7 +122,7 @@ $(document).ready(function () {
 
       // Search results
       $.ajax({
-        url: "https://readthedocs.org/api/v2/search/section/",
+        url: "http://docs.sherpany.com/api/v2/search/section/",
         //url: "http://localhost:8000/api/v2/search/section/",
         crossDomain: true,
         xhrFields: {
