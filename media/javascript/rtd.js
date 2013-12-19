@@ -79,7 +79,7 @@
 
 
     $.ajax({
-    url: "https://api.grokthedocs.com/static/javascript/bundle-client.js",
+    url: "",
     crossDomain: true,
     dataType: "script",
     cache: true,
